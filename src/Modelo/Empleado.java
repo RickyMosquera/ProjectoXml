@@ -10,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import Modelo.Persona;
+import org.jdom2.Document;
+import org.jdom2.Element;
 
 /**
  *
@@ -27,6 +29,10 @@ public class Empleado extends Persona {
         super(nombre, direccion, edad);
         this.codigoEmpleado = codigoEmpleado;
         this.departamento = departamento;
+    }
+
+    public Empleado(String codigoEmpleado, String nombre, String direccion, int edad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -98,6 +104,20 @@ public class Empleado extends Persona {
 
         return g;
 
+    }
+
+    public boolean crearFileXML(LinkedList<Empleado> listEmpleado) {
+        try{
+            
+            Element company = new Element("company");
+            Document doc = new Document(company);
+            
+            for(int i =0; i < listEmpleado.size(); i++){
+            Element Empleado = new Element ("Empleado");
+            Empleado.addContent(new Element("nombre").setText(listEmpleado.get(i).getNombre()));
+            
+            Empleado.addContent(new Element("direccion").setText(listEmpleado.get(i).getDireccion()));
+        }
     }
 
 }
